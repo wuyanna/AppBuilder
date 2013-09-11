@@ -1,12 +1,14 @@
 AppBuilderRuby::Application.routes.draw do
-  get "static_pages/home"
 
-  get "static_pages/help"
+  get "users/new"
 
   # This arranges both for a valid page at /about 
-  #   and a named route called about_path that 
-  #   returns the path to that page.
+  #   and creates named routes for use in the controllers and views:
+  #     about_path => '/about'
+  #     about_url  => 'http://localhost:3000/about'
   match '/about', to: 'static_pages#about'
+  match '/help', to: 'static_pages#help'
+  match '/signup', to: 'users#new'
 
   resources :apps
 
