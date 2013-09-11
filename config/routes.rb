@@ -3,7 +3,10 @@ AppBuilderRuby::Application.routes.draw do
 
   get "static_pages/help"
 
-  get "static_pages/about"
+  # This arranges both for a valid page at /about 
+  #   and a named route called about_path that 
+  #   returns the path to that page.
+  match '/about', to: 'static_pages#about'
 
   resources :apps
 
@@ -60,7 +63,7 @@ AppBuilderRuby::Application.routes.draw do
 
   # You can have the root of your site routed with "root"
   # just remember to delete public/index.html.
-  # root :to => 'welcome#index'
+  root :to => 'static_pages#home'
 
   # See how all your routes lay out with "rake routes"
 
