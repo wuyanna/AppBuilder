@@ -1,7 +1,5 @@
 AppBuilderRuby::Application.routes.draw do
 
-  get "users/new"
-
   # This arranges both for a valid page at /about 
   #   and creates named routes for use in the controllers and views:
   #     about_path => '/about'
