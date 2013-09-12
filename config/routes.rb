@@ -7,11 +7,14 @@ AppBuilderRuby::Application.routes.draw do
   match '/about', to: 'static_pages#about'
   match '/help', to: 'static_pages#help'
   match '/signup', to: 'users#new'
+  match '/signin',  to: 'sessions#new'
+  match '/signout', to: 'sessions#destroy', via: :delete
 
   resources :apps
 
 
   resources :users
+  resources :sessions, only: [:new, :create, :destroy]
 
 
   # The priority is based upon order of creation:
