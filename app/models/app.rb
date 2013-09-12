@@ -10,9 +10,13 @@
 #
 
 class App < ActiveRecord::Base
-  attr_accessible :name, :user_id
+  attr_accessible :name, :content, :user_id
 
   belongs_to :user
 
   validates :name, :presence => true
+  validates :content, :presence => true
+  validates :user_id, :presence => true
+
+  default_scope order: 'apps.updated_at DESC'
 end

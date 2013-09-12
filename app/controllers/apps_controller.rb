@@ -1,4 +1,5 @@
 class AppsController < ApplicationController
+  before_filter :signed_in_user, only: [:create, :destroy]
   # GET /apps
   # GET /apps.json
   def index
@@ -40,16 +41,13 @@ class AppsController < ApplicationController
   # POST /apps
   # POST /apps.json
   def create
-    @app = App.new(params[:app])
+    @app = current_user.apps.build(params[:app])
 
-    respond_to do |format|
-      if @app.save
-        format.html { redirect_to @app, notice: 'App was successfully created.' }
-        format.json { render json: @app, status: :created, location: @app }
-      else
-        format.html { render action: "new" }
-        format.json { render json: @app.errors, status: :unprocessable_entity }
-      end
+    if @app.save
+      flash[:success] = "App created!"
+      redirect_to current_user
+    else
+      render 'static_pages/home'
     end
   end
 

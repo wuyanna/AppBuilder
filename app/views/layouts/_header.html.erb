@@ -4,6 +4,9 @@
       <%= link_to "App Builder", '#', id: "logo" %>
       <nav>
         <ul class="nav pull-right">
+          <% if signed_in? %>
+            <li><%= link_to "Create New App", new_app_path %></li>
+          <% end %>
           <li><%= link_to "Home",    root_path %></li>
           <li><%= link_to "Help",    '#' %></li>
           <% if signed_in? %>

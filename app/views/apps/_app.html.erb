@@ -1,0 +1,11 @@
+<li>
+  <span class="content"><%= app.content %></span>
+  <span class="timestamp">
+    Updated <%= time_ago_in_words(app.updated_at) %> ago.
+  </span>
+  <% if current_user?(app.user) %>
+    <%= link_to "delete", app, method: :delete,
+                                     data: { confirm: "You sure?" },
+                                     title: app.name %>
+  <% end %>
+</li>
